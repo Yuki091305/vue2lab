@@ -12,9 +12,20 @@
     <div id="app">
         <div class="columns">
             <div class="column">
-                <h2>Столбец 1(Заголовки)</h2>
-                <input v-model="newTitle" @keyup.enter="addCard" placeholder="Новый заголовок":desabled="columns.column1.lenght >= 3">
-                <div v-for="(card, index) in columns.column1":key="index" {{card.title}}> </div>
+                <h2>Столбец 1 (Заголовки)</h2>
+                <input v-model="newTitle" @keyup.enter="addCard" placeholder="Новый заголовок" :disabled="columns.column1.length >= 3" class="card-input">
+                <button @click="addCard" :disabled="columns.column1.length >= 3">Добавить</button>
+                <div v-for="(card, index) in columns.column1" :key="index" class="card">
+                    <h3>{{ card.title }}</h3>
+                    <ul>
+                        <li v-for="(item, i) in card.items" :key="i">
+                            <input type="checkbox" v-model="card.items[i].done">
+                            {{ item.text }}
+                        </li>
+                    </ul>
+                    <input v-model="newItem" @keyup.enter="addListItem(card)" placeholder="Новый пункт" class="item-input">
+                    <button @click="addListItem(card)">Добавить пункт</button>
+                </div>
             </div>
             <div class="column">Столбец 2(Списки)</div>
             <div class="column">Столбец 3(Завершено)</div>
