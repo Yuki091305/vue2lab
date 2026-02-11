@@ -6,7 +6,7 @@ let app = new Vue({
         columns: {
             column1: [],
             column2: [],
-            column3: []
+            column3: [],
         }
     },
     methods: {
